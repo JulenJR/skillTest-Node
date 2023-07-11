@@ -43,3 +43,11 @@ Cada caràcter en el string representa un dígit decimal (0-9) i no s'utilitzen 
 getShot(): aquesta funció serà una promise on es realitzarà de forma aleatòria un tir de x punts a un dels dos equips. El tir tindrà un delay de 2 segons.
 
 play(): aquesta funció iniciarà la partida i farà la crida a getShot 10 vegades. Un cop acabi la partida, retornarà el marcador final.
+
+
+
+Per inicialitzar el programa aplicar la comanda npm -i per instalar les dependencies.
+
+executar server.ts amb npx ts-node server.ts 
+
+servidor corrent a la ruta localhost:3000

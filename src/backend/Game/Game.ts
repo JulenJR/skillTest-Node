@@ -8,13 +8,13 @@ export class Game {
 		this.scoreMain = new ScoreMain();
 	}
 
-	async getShot(): Promise<void> {
-		return new Promise((resolve) => {
+	async getShot(): Promise<string> {
+		return new Promise<string>((resolve) => {
 			setTimeout(() => {
 				const randomPoints = Math.floor(Math.random() * 3) + 1;
 				const randomTeam = Math.random() < 0.5 ? "teamA" : "teamB";
 
-				const playerName = this.getRandomPlayerName(randomTeam);
+				const playerName: Player = this.getRandomPlayerName(randomTeam);
 				if (randomTeam === "teamA") {
 					switch (randomPoints) {
 						case 1:
@@ -41,33 +41,34 @@ export class Game {
 					}
 				}
 
-				console.log(
-					`Team ${randomTeam} scored ${randomPoints} point(s) with ${playerName.getName()}`
-				);
+				const roundResult = `Team ${randomTeam} scored ${randomPoints} point(s) with ${playerName.getName()}`;
+				console.log(roundResult);
 
-				resolve();
+				resolve(roundResult);
 			}, 2000);
 		});
 	}
 
-	async play(): Promise<string> {
+	async play(): Promise<string[]> {
 		console.log("Game started.");
 
-		const shotPromises = [];
+		const roundResults: string[] = [];
+		const shotPromises: Promise<string>[] = [];
 		for (let i = 0; i < 10; i++) {
 			shotPromises.push(this.getShot());
 		}
 
-		return Promise.all(shotPromises).then(() => {
-			const finalScore = this.scoreMain.getScore();
+		return Promise.all(shotPromises).then((results) => {
+			roundResults.push(...results);
 			console.log("Game ended.");
 
-			return finalScore;
+			return roundResults;
 		});
 	}
 
 	private getRandomPlayerName(team: string): Player {
-		const players = team === "A" ? this.scoreMain.teamA.players : this.scoreMain.teamB.players;
+		const players =
+			team === "teamA" ? this.scoreMain.teamA.getTeam() : this.scoreMain.teamB.getTeam();
 		const randomIndex = Math.floor(Math.random() * players.length);
 
 		return players[randomIndex];

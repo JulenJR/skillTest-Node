@@ -1,5 +1,3 @@
-import * as fs from "fs";
-
 import { Player } from "../Player/Player";
 import { Team } from "../Team/Team";
 
@@ -8,14 +6,27 @@ export class ScoreMain {
 	teamB: Team = new Team();
 
 	constructor() {
-		const teamsJson = fs.readFileSync("teams.json", "utf-8");
-		const teamsData = JSON.parse(teamsJson);
+		const team1Players: Player[] = [
+			new Player("John Smith"),
+			new Player("Michael Johnson"),
+			new Player("Emily Davis"),
+			new Player("David Anderson"),
+			new Player("Sarah Thompson"),
+		];
 
-		this.teamA.name = teamsData.team1.name;
-		this.teamA.players = teamsData.team1.players;
+		const team2Players: Player[] = [
+			new Player("Robert Wilson"),
+			new Player("Jessica Martinez"),
+			new Player("Daniel Taylor"),
+			new Player("Olivia Brown"),
+			new Player("Christopher Lee"),
+		];
 
-		this.teamB.name = teamsData.team2.name;
-		this.teamB.players = teamsData.team2.players;
+		this.teamA.name = "teamA";
+		this.teamA.players = team1Players;
+
+		this.teamB.name = "teamB";
+		this.teamB.players = team2Players;
 	}
 
 	scoreTeamA1(playerName: Player): void {
