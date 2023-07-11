@@ -1,0 +1,23 @@
+{
+    "team1": {
+      "name": "teamA",
+      "players": [
+        "John Smith",
+        "Michael Johnson",
+        "Emily Davis",
+        "David Anderson",
+        "Sarah Thompson"
+      ]
+    },
+    "team2": {
+      "name": "teamB",
+      "players": [
+        "Robert Wilson",
+        "Jessica Martinez",
+        "Daniel Taylor",
+        "Olivia Brown",
+        "Christopher Lee"
+      ]
+    }
+}
+  
