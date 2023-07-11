@@ -54,12 +54,15 @@
       fetch(`/score?team=${team}&points=${points}`)
         .then(response => response.json())
         .then(data => {
-          document.getElementById(`team${team}Score`).textContent = data[team].score;
+          const updatedScore = data[team].score;
+          document.getElementById(`${team}Score`).textContent = updatedScore.toString();
+          console.log(`team ${team} score +${points} ${updatedScore}`);
         })
         .catch(error => {
           console.error('Error:', error);
         });
     }
   </script>
+  
 </body>
 </html>
